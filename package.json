@@ -1,0 +1,37 @@
+{
+  "name": "js-task-2-tic-tac-toe",
+  "version": "1.0.0",
+  "description": "js task 2 for epam training center",
+  "main": "ticTacToe.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write src",
+    "eslint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yomche/js-task-2-tic-tac-toe.git"
+  },
+  "author": "Ekaterina Smirnova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yomche/js-task-2-tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/yomche/js-task-2-tic-tac-toe#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.7",
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.0.0"
+  },
+  "dependencies": {
+    "prettier": "^2.2.1"
+  }
+}
