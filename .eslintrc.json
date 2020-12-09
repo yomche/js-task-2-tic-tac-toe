@@ -12,10 +12,10 @@
     },
     "rules": {
         "linebreak-style": 0,
-        "allowForLoopAfterthoughts": 0,
         "no-await-in-loop": 0,
         "no-console": "off",
-        "allowElseIf": true,
+        "eqeqeq": "off",
+        "no-plusplus": "off",
         "indent": ["error", 4, {"SwitchCase": 1}],
         "import/prefer-default-export": "off",
         "import/no-extraneous-dependencies": ["warn", {
