@@ -1,3 +1,5 @@
+/* eslint-disable no-else-return */
+
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -12,31 +14,31 @@ const board = {
         ['-', '-', '-']
     ],
     printBoard() {
+        console.log('');
         console.log('    y0__y1__y2');
         for (let i = 0; i < this.boardElem.length; i++) {
             console.log(`x${i} |${this.boardElem[i].join(' | ')}|`);
         }
         console.log('');
-    },
+    }
 };
 
 function AnalyzeWin() {
-    // eslint-disable-next-line func-names
-    this.victoryCheck = function () {
-        for (const i = 0; i < 3; i++) {
+    this.victoryCheck = function victoryCheck() {
+        for (let i = 0; i < 3; i++) {
             if (
                 board.boardElem[i][0] == 'o'
                 && board.boardElem[i][1] == 'o'
                 && board.boardElem[i][2] == 'o'
             ) {
-                console.log(`Victory for noughts in ${i} row. Congratz`);
+                console.log(`Victory for noughts in ${i} row. Congrats`);
                 return true;
             } else if (
-                board.boardElem[i][0] == 'x' &&
-                board.boardElem[i][1] == 'x' &&
-                board.boardElem[i][2] == 'x'
+                board.boardElem[i][0] == 'x'
+                && board.boardElem[i][1] == 'x'
+                && board.boardElem[i][2] == 'x'
             ) {
-                console.log(`Victory for crosses in ${i} row. Congratz`);
+                console.log(`Victory for crosses in ${i} row. Congrats`);
                 return true;
             }
         }
@@ -46,47 +48,47 @@ function AnalyzeWin() {
                 && board.boardElem[1][j] == 'o'
                 && board.boardElem[2][j] == 'o'
             ) {
-                console.log(`Victory for noughts in ${j} column. Congratz`);
+                console.log(`Victory for noughts in ${j} column. Congrats`);
                 return true;
             } else if (
-                board.boardElem[0][j] == 'x' &&
-                board.boardElem[1][j] == 'x' &&
-                board.boardElem[2][j] == 'x'
+                board.boardElem[0][j] == 'x'
+                && board.boardElem[1][j] == 'x'
+                && board.boardElem[2][j] == 'x'
             ) {
-                console.log(`Victory for crosses in ${j} column. Congratz`);
+                console.log(`Victory for crosses in ${j} column. Congrats`);
                 return true;
             }
         }
         if (
-            board.boardElem[0][0] == 'o' &&
-            board.boardElem[1][1] == 'o' &&
-            board.boardElem[2][2] == 'o'
+            board.boardElem[0][0] == 'o'
+            && board.boardElem[1][1] == 'o'
+            && board.boardElem[2][2] == 'o'
         ) {
-            console.log('Victory for noughts in diagonally. Congratz');
+            console.log('Victory for noughts in diagonally. Congrats');
             return true;
         }
         if (
-            board.boardElem[0][0] == 'x' &&
-            board.boardElem[1][1] == 'x' &&
-            board.boardElem[2][2] == 'x'
+            board.boardElem[0][0] == 'x'
+            && board.boardElem[1][1] == 'x'
+            && board.boardElem[2][2] == 'x'
         ) {
-            console.log('Victory for crosses in diagonally. Congratz');
+            console.log('Victory for crosses in diagonally. Congrats');
             return true;
         }
         if (
-            board.boardElem[2][0] == 'o' &&
-            board.boardElem[1][1] == 'o' &&
-            board.boardElem[0][2] == 'o'
+            board.boardElem[2][0] == 'o'
+            && board.boardElem[1][1] == 'o'
+            && board.boardElem[0][2] == 'o'
         ) {
-            console.log('Victory for noughts in diagonally. Congratz');
+            console.log('Victory for noughts in diagonally. Congrats');
             return true;
         }
         if (
-            board.boardElem[2][0] == 'x' &&
-            board.boardElem[1][1] == 'x' &&
-            board.boardElem[0][2] == 'x'
+            board.boardElem[2][0] == 'x'
+            && board.boardElem[1][1] == 'x'
+            && board.boardElem[0][2] == 'x'
         ) {
-            console.log('Victory for crosses in diagonally. Congratz');
+            console.log('Victory for crosses in diagonally. Congrats');
             return true;
         }
         return false;
@@ -97,27 +99,27 @@ AnalyzeWin.prototype = board;
 const analyzeWin = new AnalyzeWin();
 
 function questionAboutRow() {
-    return new Promise(function (resolve) {
-        rl.question('Input your row coordinate: ', function (row_coordinate) {
-            resolve(row_coordinate);
+    return new Promise((resolve) => {
+        rl.question('Input your row coordinate: ', (rowCoordinate) => {
+            resolve(rowCoordinate);
         });
     });
 }
 
 function questionAboutColumn() {
-    return new Promise(function (resolve) {
+    return new Promise((resolve) => {
         rl.question(
             'Input your column coordinate: ',
-            function (column_coordinate) {
-                resolve(column_coordinate);
+            (columnCoordinate) => {
+                resolve(columnCoordinate);
             }
         );
     });
 }
 
 function questionAboutFigure() {
-    return new Promise(function (resolve) {
-        rl.question('Choose your figure (x or o): ', function (inputFigure) {
+    return new Promise((resolve) => {
+        rl.question('Choose your figure (x or o): ', (inputFigure) => {
             resolve(inputFigure);
         });
     });
@@ -126,21 +128,22 @@ function questionAboutFigure() {
 async function ticTacToe() {
     for (let counter = 0; counter < 9; counter++) {
         console.log(`The ${counter + 1} move`);
+        board.printBoard();
 
-        let row_coordinate = await questionAboutRow();
-        let column_coordinate = await questionAboutColumn();
-        let figure = await questionAboutFigure();
+        let rowCoordinate = await questionAboutRow();
+        let columnCoordinate = await questionAboutColumn();
+        const figure = await questionAboutFigure();
 
-        row_coordinate = Number(row_coordinate);
-        column_coordinate = Number(column_coordinate);
+        rowCoordinate = Number(rowCoordinate);
+        columnCoordinate = Number(columnCoordinate);
 
         if (
-            row_coordinate < 3 &&
-            column_coordinate < 3 &&
-            board.boardElem[row_coordinate][column_coordinate] == '-' &&
-            (figure === 'o' || figure === 'x')
+            rowCoordinate < 3
+            && columnCoordinate < 3
+            && board.boardElem[rowCoordinate][columnCoordinate] == '-'
+            && (figure === 'o' || figure === 'x')
         ) {
-            board.boardElem[row_coordinate][column_coordinate] = figure;
+            board.boardElem[rowCoordinate][columnCoordinate] = figure;
             board.printBoard();
             if (analyzeWin.victoryCheck()) {
                 rl.close();
